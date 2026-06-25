@@ -136,6 +136,9 @@ The repository is structured as a **monorepo** following a client-server archite
 ## Roadmap
 
 - [ ] **Migrate to SQLite**: Replace the current JSON file data store with SQLite to improve concurrency, performance at scale, and data safety during unexpected power outages.
+- [ ] **Customer Credit & Ledger System (Utang/Kulang)**: Implement a streamlined ledger feature to track outstanding customer balances via an easy-to-use tabular interface. This will monitor two common scenarios:
+  - **Full Credit (Utang):** Track deferred payments for items to be paid later, including the ability to apply custom interest or markup fees.
+  - **Partial Payments (Kulang):** Log transactions where the customer pays a partial amount upfront and owes a remaining short balance.
 
 ## Contributing
 
