@@ -133,6 +133,10 @@ The repository is structured as a **monorepo** following a client-server archite
 *   `backend/uploads/`: Stores uploaded product and shelf location images.
 *   `frontend/src/components/`: Contains modular React components such as `App`, `ProductForm`, `CartPOS`, `SalesHistory`, and `Settings`.
 
+## Roadmap
+
+- [ ] **Migrate to SQLite**: Replace the current JSON file data store with SQLite to improve concurrency, performance at scale, and data safety during unexpected power outages.
+
 ## Contributing
 
 1.  Fork the repository.
