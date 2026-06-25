@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tindahan Helper</title>
+    <!-- Prevent bright white background flash before CSS/JS bundles resolve -->
+    <script>
+      (function() {
+        const savedThemeName = localStorage.getItem('tindahan-theme');
+        const themes = {
+          'Amethyst Lavender': '#221528',
+          'Emerald Moss': '#14201a',
+          'Warm Cocoa': '#231815',
+          'Crimson Velvet': '#241416',
+          'Copper Rust': '#281b1b',
+          'Midnight Amber': '#1c1b19'
+        };
+        const bg = themes[savedThemeName] || '#1c1b19';
+        document.documentElement.style.backgroundColor = bg;
+        document.documentElement.style.setProperty('--bg-app', bg);
+      })();
+    </script>
+    <style>
+      html, body {
+        background-color: var(--bg-app, #1c1b19);
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
