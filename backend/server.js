@@ -575,6 +575,10 @@ app.post('/api/categories/delete', deleteCategoryHandler);
 
 // POST upload product image
 app.post('/api/upload', upload.single('image'), (req, res) => {
+  if (process.env.VERCEL) {
+    return res.status(403).json({ error: 'Image uploads are disabled in the live demo to prevent abuse.' });
+  }
+
   if (!req.file) {
     return res.status(400).json({ error: 'No image file provided' });
   }
