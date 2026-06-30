@@ -14,9 +14,10 @@ app.use(cors());
 app.use(express.json());
 
 // Directories setup
-const DATA_DIR = path.join(__dirname, 'data');
+const isVercel = process.env.VERCEL;
+const DATA_DIR = isVercel ? '/tmp/data' : path.join(__dirname, 'data');
 const DB_FILE = path.join(DATA_DIR, 'inventory.json');
-const UPLOADS_DIR = path.join(__dirname, 'uploads');
+const UPLOADS_DIR = isVercel ? '/tmp/uploads' : path.join(__dirname, 'uploads');
 
 // Ensure directories exist
 if (!fs.existsSync(DATA_DIR)) {
@@ -679,11 +680,15 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ error: err.message || 'Internal Server Error' });
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-  const localIp = getLocalIpAddress();
-  console.log(`===============================================`);
-  console.log(`  Tindahan Helper Backend Running Locally!`);
-  console.log(`  - Local PC:  http://localhost:${PORT}`);
-  console.log(`  - Wi-Fi IP:  http://${localIp}:${PORT}`);
-  console.log(`===============================================\n`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, '0.0.0.0', () => {
+    const localIp = getLocalIpAddress();
+    console.log(`===============================================`);
+    console.log(`  Tindahan Helper Backend Running Locally!`);
+    console.log(`  - Local PC:  http://localhost:${PORT}`);
+    console.log(`  - Wi-Fi IP:  http://${localIp}:${PORT}`);
+    console.log(`===============================================\n`);
+  });
+}
+
+module.exports = app;
